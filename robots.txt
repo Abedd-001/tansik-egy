@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tansik-egy.gpa-egy.workers.dev/sitemap.xml

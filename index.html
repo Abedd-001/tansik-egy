@@ -1,0 +1,1279 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GPA &amp; Egyptian Tansik Calculator | American Diploma, IGCSE, IB</title>
+<meta name="description" content="Free GPA calculator for American Diploma, IGCSE and IB students in Egypt, plus an Egyptian Tansik calculator for SAT, EST and ACT scores.">
+<link rel="canonical" href="https://tansik-egy.gpa-egy.workers.dev/">
+<meta name="author" content="Abdulrahman Abed">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#2563EB">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GPA &amp; Tansik Calculator">
+<meta property="og:title" content="GPA &amp; Egyptian Tansik Calculator">
+<meta property="og:description" content="Free GPA calculator for American Diploma, IGCSE and IB students in Egypt, plus an Egyptian Tansik calculator for SAT, EST and ACT scores.">
+<meta property="og:url" content="https://tansik-egy.gpa-egy.workers.dev/">
+<meta property="og:image" content="https://tansik-egy.gpa-egy.workers.dev/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="GPA and Egyptian Tansik Calculator for American Diploma, IGCSE and IB students">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GPA &amp; Egyptian Tansik Calculator">
+<meta name="twitter:description" content="Free GPA calculator for American Diploma, IGCSE and IB students in Egypt, plus an Egyptian Tansik calculator for SAT, EST and ACT scores.">
+<meta name="twitter:image" content="https://tansik-egy.gpa-egy.workers.dev/og-image.png">
+<meta name="google-site-verification" content="j1JU62sNryjdZvwg_Zx9U-Jg30Xc0MrmeMzqttgicW8">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GPA & Egyptian Tansik Calculator","url":"https://tansik-egy.gpa-egy.workers.dev/","description":"Free GPA calculator for American Diploma, IGCSE and IB students in Egypt, plus an Egyptian Tansik calculator for SAT, EST and ACT scores.","applicationCategory":"EducationalApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":"en","author":{"@type":"Person","name":"Abdulrahman Abed"},"copyrightHolder":{"@type":"Person","name":"Abdulrahman Abed"},"audience":{"@type":"EducationalAudience","educationalRole":"student"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lexend:wght@300..700&family=Readex+Pro:wght@300..700&display=swap">
+<style>
+body{margin:0}
+/* Layout: choose-a-certificate home, then one calculator view (form | sticky result) and the Egyptian Tansik view.
+   Look: teal report-card. Cool teal-tinted paper, bright teal fills with near-black ink, amber only for notices. */
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --sunken:#F1F4F9; --field:#F7F9FC;
+  --ink:#0F1B2D; --ink-2:#556274; --line:#DCE3EC;
+  --brand:#2563EB; --on-brand:#FFFFFF; --brand-ink:#1D4ED8; --brand-soft:#E6EEFD; --focus:#1D4ED8;
+  --amber:#7A4F00; --amber-bg:#FFF1CC;
+  --good:#0E7A4B; --good-bg:#E1F5EA;
+  --bad:#B42318; --bad-bg:#FCE8E5;
+  --shadow:0 1px 2px rgba(15,27,45,.08);
+  --f:'Lexend','Readex Pro','Segoe UI',system-ui,-apple-system,Tahoma,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220; --surface:#121B2D; --sunken:#1A2540; --field:#0E1626;
+    --ink:#E8EEF9; --ink-2:#9DB0CE; --line:#27344F;
+    --brand:#5B8DEF; --on-brand:#06122B; --brand-ink:#8DB2FF; --brand-soft:#172A52; --focus:#8DB2FF;
+    --amber:#F2C25B; --amber-bg:#3A2D0B;
+    --good:#5BD39A; --good-bg:#11301F;
+    --bad:#FF9A8D; --bad-bg:#3A1816;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1220; --surface:#121B2D; --sunken:#1A2540; --field:#0E1626;
+  --ink:#E8EEF9; --ink-2:#9DB0CE; --line:#27344F;
+  --brand:#5B8DEF; --on-brand:#06122B; --brand-ink:#8DB2FF; --brand-soft:#172A52; --focus:#8DB2FF;
+  --amber:#F2C25B; --amber-bg:#3A2D0B;
+  --good:#5BD39A; --good-bg:#11301F;
+  --bad:#FF9A8D; --bad-bg:#3A1816;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.65 var(--f);-webkit-text-size-adjust:100%}
+.app{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:20px 56px}
+h1,h2,h3{font-family:var(--f);text-wrap:balance;margin:0;font-weight:700;line-height:1.25}
+p{margin:0}
+a{color:var(--brand-ink)}
+button{font-family:inherit}
+
+/* top bar */
+.bar{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.brand{display:inline-flex;align-items:center;gap:10px;padding:0;border:0;background:none;color:var(--ink);font:600 16px var(--f);cursor:pointer}
+.brand svg{width:34px;height:34px;flex:none}
+.brand:focus-visible,.pill:focus-visible,.choice:focus-visible,.band:focus-visible,.back:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:12px}
+
+/* home */
+.hero{display:grid;gap:12px;margin-bottom:26px;max-width:62ch}
+.eyebrow{font:500 12.5px/1.4 var(--mono);color:var(--brand-ink);letter-spacing:.04em}
+h1{font-size:clamp(30px,5.4vw,46px);letter-spacing:-.01em}
+.lede{color:var(--ink-2);font-size:16px}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.choice{display:grid;gap:14px;align-content:start;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--ink);text-align:start;text-decoration:none;cursor:pointer;min-width:0;transition:border-color .15s,transform .15s}
+.choice:hover{border-color:var(--brand);transform:translateY(-2px)}
+.latin{font:700 clamp(30px,4vw,38px)/1.1 var(--f);letter-spacing:-.01em}
+.sub{color:var(--ink-2);font-size:14.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.c2{font:500 12.5px/1.2 var(--mono);background:var(--brand-soft);color:var(--brand-ink);padding:5px 9px;border-radius:7px}
+.go{display:inline-flex;align-items:center;gap:8px;color:var(--brand-ink);font-weight:600;font-size:14.5px}
+.go svg,.band svg{width:18px;height:18px;flex:none}
+.band{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;margin-top:16px;padding:24px 26px;border-radius:18px;background:var(--brand);color:var(--on-brand);text-align:start;text-decoration:none;border:0;width:100%;cursor:pointer;transition:transform .15s}
+.band:hover{transform:translateY(-2px)}
+.band h2{font-size:clamp(22px,3.2vw,28px)}
+.band p{margin-top:4px;max-width:58ch;font-size:15px}
+.band .chips .c2{background:color-mix(in srgb,var(--on-brand) 16%,transparent);color:var(--on-brand)}
+.band .go{color:var(--on-brand)}
+.band .side{display:grid;gap:12px;justify-items:end}
+.homefoot{margin-top:28px;display:grid;gap:12px;color:var(--ink-2);font-size:13.5px;max-width:80ch}
+
+/* pills */
+.pills{display:flex;gap:6px;overflow-x:auto;padding-block:4px;margin-bottom:18px;scrollbar-width:thin}
+.pill{flex:0 0 auto;min-height:40px;padding:0 16px;border:1px solid var(--line);border-radius:99px;background:var(--surface);color:var(--ink-2);font:500 14px var(--f);cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+.pill[aria-current="page"]{background:var(--brand);border-color:transparent;color:var(--on-brand);font-weight:600}
+
+/* view head */
+.vhead{display:grid;gap:6px;margin-bottom:18px}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--brand-ink);font:600 14px var(--f);text-decoration:none;cursor:pointer;width:fit-content}
+.back svg{width:16px;height:16px}
+h2.t{font-size:clamp(26px,4.4vw,36px);letter-spacing:-.01em}
+h2.t:focus{outline:none}
+.vhead .lede{max-width:70ch}
+
+/* grid */
+.grid{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:20px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
+.form{display:grid;gap:24px}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}.choices{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:620px){.band{grid-template-columns:minmax(0,1fr)}.band .side{justify-items:start}}
+
+fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:12px}
+legend{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0;margin-bottom:4px;font:600 18px var(--f)}
+.w{font:500 12px/1 var(--mono);padding:5px 8px;border-radius:6px;background:var(--sunken);color:var(--ink-2)}
+.hint{font-size:13px;color:var(--ink-2)}
+.note{padding:10px 12px;border-radius:10px;background:var(--sunken);color:var(--ink-2);font-size:13.5px;line-height:1.6}
+.note.bad{background:var(--bad-bg);color:var(--bad)}
+.note.warn{background:var(--amber-bg);color:var(--amber)}
+.note.good{background:var(--good-bg);color:var(--good)}
+
+/* segmented radios */
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;padding:4px;background:var(--sunken);border-radius:12px}
+.seg label{position:relative;display:block;min-width:0}
+.seg input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.seg span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:44px;padding:6px 8px;border-radius:9px;text-align:center;line-height:1.35;font-weight:500;color:var(--ink-2)}
+.seg small{font:400 11px/1.2 var(--mono);color:var(--ink-2)}
+.seg input:checked+span{background:var(--surface);color:var(--brand-ink);font-weight:600;box-shadow:0 0 0 1px var(--line),var(--shadow)}
+.seg input:focus-visible+span{outline:2px solid var(--focus);outline-offset:2px}
+.seg.sm span{min-height:42px;padding-inline:14px}
+
+/* inputs */
+.in{width:100%;height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink);font:inherit;min-width:0}
+select.in{padding-inline:8px}
+.in.num{text-align:center;font-variant-numeric:tabular-nums}
+.in:focus-visible{outline:2px solid var(--focus);outline-offset:1px;border-color:transparent}
+.f{display:grid;gap:4px;min-width:0}
+.f>label,.lbl{font-size:12.5px;color:var(--ink-2)}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:560px){.trio{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:600 14.5px/1 var(--f);cursor:pointer}
+.btn:hover{border-color:var(--brand)}
+.btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.btn.primary{background:var(--brand);border-color:transparent;color:var(--on-brand)}
+.btn.primary:hover{filter:brightness(1.05)}
+.btn.link{border-color:transparent;background:transparent;color:var(--brand-ink);padding-inline:6px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn svg{width:18px;height:18px;flex:none}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+/* course rows */
+.rows{display:grid}
+.row{display:grid;gap:10px;align-items:end;padding-block:12px;border-top:1px solid var(--line)}
+.row.r-ig{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) auto}
+.row.r-ib{grid-template-columns:minmax(0,1.5fr) auto minmax(0,.8fr) auto}
+.row.r-us{grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr) minmax(0,.6fr) minmax(0,1.15fr) auto}
+.f-end{display:flex;align-items:center;gap:6px;justify-content:flex-end;min-height:44px}
+.pts{min-width:44px;text-align:center;font:500 13px/1 var(--mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.x{width:36px;height:36px;border:0;border-radius:8px;background:transparent;color:var(--ink-2);font-size:21px;line-height:1;cursor:pointer}
+.x:hover{background:var(--bad-bg);color:var(--bad)}
+.x:focus-visible{outline:2px solid var(--focus)}
+@media (max-width:640px){
+  .row.r-ig,.row.r-ib,.row.r-us{grid-template-columns:repeat(6,minmax(0,1fr));align-items:end}
+  .row .f{grid-column:span 3}
+  .row.r-ig .f:not(.f-name){grid-column:1/-1}
+  .row .f-wide{grid-column:1/-1}
+  .row .f-name{grid-column:span 4}
+  .row .f-end{grid-column:5/span 2;grid-row:1;justify-content:flex-end}
+}
+
+/* results */
+.res{display:grid;gap:16px;align-content:start}
+@media (min-width:861px){.res{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}}
+.res-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tag{font:600 15px var(--f);color:var(--ink-2)}
+.chip{font-size:12px;padding:3px 10px;border-radius:99px;background:var(--amber-bg);color:var(--amber);font-weight:600}
+.tiles{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:10px}
+.tiles.one{grid-template-columns:minmax(0,1fr)}
+.tile{border-radius:14px;padding:14px 16px;display:grid;gap:0;align-content:start;min-width:0}
+.tile.main{background:var(--brand);color:var(--on-brand)}
+.tile.alt{background:var(--sunken)}
+.tile small{font-size:13px;line-height:1.5}
+.tile b{justify-self:start;font:700 clamp(44px,8vw,56px)/1.15 var(--f);font-variant-numeric:tabular-nums}
+.tile.alt b{font-size:clamp(34px,6vw,44px)}
+.tile.pct b{font-size:clamp(46px,8vw,62px)}
+.meter{position:relative;height:8px;border-radius:99px;background:var(--sunken)}
+.meter i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:99px;background:var(--brand-ink);transition:width .25s}
+.meter b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--line)}
+.scale{display:flex;justify-content:space-between;font:400 11px var(--mono);color:var(--ink-2);margin-top:4px}
+.kv{display:grid;margin:0}
+.kv div{display:flex;justify-content:space-between;gap:12px;padding-block:9px;border-top:1px solid var(--line)}
+.kv dt{color:var(--ink-2)}
+.kv dd{margin:0;font:500 14px var(--mono);font-variant-numeric:tabular-nums}
+.bk{display:grid;gap:14px}
+.bk-h{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.bk-h b{font:600 15px var(--mono);font-variant-numeric:tabular-nums}
+.bar2{height:6px;border-radius:99px;background:var(--sunken);overflow:hidden;margin-block:6px 4px}
+.bar2 i{display:block;height:100%;background:var(--brand-ink);border-radius:99px;transition:width .25s}
+.bk small{color:var(--ink-2);font-size:12.5px}
+.max{font-size:12.5px;color:var(--ink-2)}
+.rep{display:grid;gap:10px;padding-top:4px;border-top:1px solid var(--line)}
+
+/* rules, details, footer */
+.rules{margin-top:20px}
+details{border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+summary{cursor:pointer;padding:14px 18px;font:600 16px var(--f);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:500 20px var(--mono);color:var(--brand-ink)}
+details[open] summary::after{content:"−"}
+summary:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:14px}
+.det{padding:0 18px 18px;display:grid;gap:14px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
+th,td{padding:10px 12px;text-align:start;border-top:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink-2);background:var(--sunken);border-top:0}
+td b{font-family:var(--mono);font-weight:500}
+.det ul{margin:0;padding-inline-start:20px;display:grid;gap:6px}
+.credit{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink-2);font-size:13.5px;text-align:center}
+.foot{margin-top:24px;display:grid;gap:12px;color:var(--ink-2);font-size:13.5px}
+
+/* government faculties + admission rules (Arabic sections) */
+.elig,.rulesec{margin-top:20px;display:grid;gap:14px}
+.elig h3,.rulesec h3{font-size:clamp(20px,3vw,24px);line-height:1.5}
+.sum{color:var(--ink-2)}
+.sum b{color:var(--ink);font-family:var(--mono);font-weight:600}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.tools .f{flex:1 1 240px;max-width:360px}
+.cnt{font-size:13px;color:var(--ink-2)}
+.tscroll{max-height:min(62vh,520px);max-width:760px;overflow:auto;border:1px solid var(--line);border-radius:12px}
+.tscroll:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.ft{min-width:0;width:100%}
+.ft th{position:sticky;top:0;z-index:1}
+.ft th.n,.ft td.n{text-align:left;white-space:nowrap;width:1%}
+.ft td.n{font:500 14px var(--mono);font-variant-numeric:tabular-nums;direction:ltr}
+.ft tbody tr:last-child td{border-bottom:0}
+a.btn{text-decoration:none}
+.rl{margin:0;padding:0;list-style:none;display:grid;gap:14px}
+.rl li{display:grid;gap:4px;padding-inline-start:18px;position:relative}
+.rl li::before{content:"";position:absolute;inset-inline-start:0;top:.8em;width:7px;height:7px;border-radius:50%;background:var(--brand)}
+.rl b{font-weight:600}
+
+/* phone summary bar, toast, preview */
+.mini{position:fixed;inset-inline:0;bottom:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--line)}
+.mini .m-l{display:grid;line-height:1.35}
+.mini .m-l small{color:var(--ink-2);font-size:12px}
+.mini .m-v{font:700 26px/1.1 var(--f);font-variant-numeric:tabular-nums}
+@media (min-width:861px){.mini{display:none}}
+@media (max-width:860px){.app.with-mini{padding-bottom:110px}}
+.toast{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:30;margin-inline:auto;width:fit-content;max-width:calc(100% - 32px);padding:11px 18px;border-radius:12px;background:var(--ink);color:var(--bg);font:500 14px/1.5 var(--f);box-shadow:0 6px 24px rgba(0,0,0,.25)}
+@media (min-width:861px){.toast{bottom:28px}}
+.ov{position:fixed;inset:0;z-index:40;background:rgba(8,15,30,.72);display:grid;place-items:center;padding:16px}
+.ov-in{width:min(760px,100%);max-height:100%;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:12px}
+.ov-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;font:600 16px var(--f)}
+#ovPages{display:grid;gap:12px}
+#ovPages img{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<noscript><p style="font:16px/1.6 system-ui,sans-serif;padding:24px">This calculator needs JavaScript. Please enable it in your browser.</p></noscript>
+<div class="app" dir="ltr" lang="en" id="app">
+
+  <div class="bar">
+    <button class="brand" type="button" data-go="home" aria-label="Home">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="var(--brand)"/><rect x="7.5" y="17" width="5" height="9.5" rx="1.4" fill="var(--on-brand)"/><rect x="14.5" y="11.5" width="5" height="15" rx="1.4" fill="var(--on-brand)"/><rect x="21.5" y="7" width="5" height="19.5" rx="1.4" fill="var(--on-brand)"/></svg>
+      <span>GPA &amp; Tansik Calculator</span>
+    </button>
+  </div>
+
+  <nav class="pills" id="pills" aria-label="Calculators" hidden>
+    <a class="pill" href="#home" data-go="home">Home</a>
+    <a class="pill" href="#igcse" data-go="igcse">IGCSE</a>
+    <a class="pill" href="#ib" data-go="ib">IB DP</a>
+    <a class="pill" href="#american" data-go="american">American</a>
+    <a class="pill" href="#tansik" data-go="tansik">Egyptian Tansik</a>
+  </nav>
+
+  <!-- ================= HOME ================= -->
+  <section id="v-home">
+    <header class="hero">
+      <p class="eyebrow">IGCSE · IB DP · American Diploma</p>
+      <h1>Calculate your GPA and your Egyptian Tansik score</h1>
+      <p class="lede">Built for IGCSE, IB and American Diploma students in Egypt. Pick your certificate, enter your grades, and save the result as a PDF report.</p>
+    </header>
+
+    <div class="choices">
+      <a class="choice" href="#igcse" data-go="igcse">
+        <span class="latin">IGCSE</span>
+        <span class="sub">Letter grades from A* to U, or numbers from 9 to 1, with a ready list of subjects to pick from.</span>
+        <span class="chips"><span class="c2">A* = 4.0</span><span class="c2">A = 3.85</span><span class="c2">9 = 4.0</span></span>
+        <span class="go">Open calculator <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l6 6-6 6"/></svg></span>
+      </a>
+      <a class="choice" href="#ib" data-go="ib">
+        <span class="latin">IB DP</span>
+        <span class="sub">A grade from 1 to 7 for each subject, HL or SL level, and your diploma points out of 45.</span>
+        <span class="chips"><span class="c2">7 = 4.0</span><span class="c2">HL +1.0</span><span class="c2">45 pts</span></span>
+        <span class="go">Open calculator <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l6 6-6 6"/></svg></span>
+      </a>
+      <a class="choice" href="#american" data-go="american">
+        <span class="latin">American</span>
+        <span class="sub">Letter grades or percentages, with Honors and AP levels for each course, on the US or Canadian scale.</span>
+        <span class="chips"><span class="c2">A+ = 4.0</span><span class="c2">Honors +0.5</span><span class="c2">AP +1.0</span></span>
+        <span class="go">Open calculator <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+
+    <a class="band" href="#tansik" data-go="tansik">
+      <div>
+        <h2>Egyptian Tansik Calculator</h2>
+        <p>Turn your GPA and your SAT, EST or ACT scores into your Tansik total for government or private universities. For the American Diploma.</p>
+      </div>
+      <div class="side">
+        <span class="chips"><span class="c2">GPA 40%</span><span class="c2">SAT / EST / ACT 60%</span></span>
+        <span class="go">Calculate my total <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <div class="homefoot">
+      <p>Results are estimates for guidance only. Universities recalculate GPA in their own way, and the official Tansik total comes from the coordination office and the Supreme Council of Universities.</p>
+      <p>This is an independent free tool. It is not affiliated with any government body, university or school.</p>
+    </div>
+  </section>
+
+  <!-- ================= GPA CALCULATORS ================= -->
+  <section id="v-calc" hidden>
+    <header class="vhead">
+      <a class="back" href="#home" data-go="home"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l-6 6 6 6"/></svg>All calculators</a>
+      <h2 class="t" id="cTitle" tabindex="-1">—</h2>
+      <p class="lede" id="cLede"></p>
+    </header>
+    <div class="grid">
+      <div class="card form" id="cForm"></div>
+
+      <aside class="card res" id="cRes" aria-live="polite" aria-label="GPA result">
+        <div class="res-top"><span class="tag">Cumulative GPA</span><span class="chip" id="rEx">Example</span></div>
+        <div class="tiles" id="rTiles">
+          <div class="tile main"><small>GPA (out of 4.0)</small><b id="rV1">—</b></div>
+          <div class="tile alt" id="rT2"><small>Weighted (out of 5.0)</small><b id="rV2">—</b></div>
+        </div>
+        <div>
+          <div class="meter" aria-hidden="true"><i id="rBar" style="width:0"></i><b style="inset-inline-start:50%"></b><b style="inset-inline-start:75%"></b></div>
+          <div class="scale" aria-hidden="true"><span>0</span><span>2.0</span><span>3.0</span><span>4.0</span></div>
+        </div>
+        <dl class="kv" id="rKv"></dl>
+        <p class="note" id="rMsg" hidden></p>
+        <div class="rep">
+          <div class="f"><label for="stName">Student name (optional, shown on the report)</label><input class="in" id="stName" dir="auto" maxlength="40" autocomplete="off" placeholder="e.g. Ahmed Mohamed"></div>
+          <button class="btn primary" type="button" id="pdfBtn"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v9M6.5 9l3.5 3.5L13.5 9M4 16h12"/></svg><span>Save PDF report</span></button>
+          <button class="btn" type="button" id="toTansik" hidden>Continue to Tansik</button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="foot">
+      <details>
+        <summary>How the GPA is calculated</summary>
+        <div class="det">
+          <ul>
+            <li>There is no single official table for converting IGCSE or IB grades to a 4.0 scale. Most US universities recalculate GPA in their own way.</li>
+            <li>GPA = sum of (course points × credits) ÷ total credits. The weighted bonus is added to courses worth 1.0 point or more.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= TANSIK ================= -->
+  <section id="v-tansik" hidden>
+    <header class="vhead">
+      <a class="back" href="#home" data-go="home"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l-6 6 6 6"/></svg>All calculators</a>
+      <h2 class="t" id="tTitle" tabindex="-1">Egyptian Tansik Calculator</h2>
+      <p class="lede">For the American Diploma (the same rules apply to the Canadian diploma). IGCSE and IB use a different equivalency system that isn't covered here.</p>
+    </header>
+    <div class="grid">
+      <div class="card form">
+        <fieldset>
+          <legend>Applying to</legend>
+          <div class="seg" role="radiogroup" aria-label="University type">
+            <label><input type="radio" name="uni" value="gov" checked><span>Government universities</span></label>
+            <label><input type="radio" name="uni" value="priv"><span>Private &amp; Ahliya universities</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>School GPA <span class="w">40%</span></legend>
+          <div class="f">
+            <label for="tGpa">Your GPA (out of 4.0)</label>
+            <input class="in num" id="tGpa" type="number" inputmode="decimal" min="0" max="4" step="0.01" value="3.7" placeholder="e.g. 3.7">
+            <p class="hint" id="tGpaHint">GPA part = your GPA ÷ 4.0 × 40, so a 4.0 gives the full 40 points.</p>
+          </div>
+          <div class="actions"><button class="btn" type="button" id="importBtn" disabled>Use my American GPA</button></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>First test <span class="w">60%</span></legend>
+          <div class="seg" role="radiogroup" aria-label="First test">
+            <label><input type="radio" name="t1" value="sat"><span>SAT 1</span></label>
+            <label><input type="radio" name="t1" value="est" checked><span>EST 1</span></label>
+            <label><input type="radio" name="t1" value="act"><span>ACT 1</span></label>
+          </div>
+          <div class="pair" data-when="t1:sat|est">
+            <div class="f"><label for="t1m">Math</label><input class="in num" id="t1m" type="number" inputmode="numeric" min="200" max="800" step="10" value="680" placeholder="200–800"></div>
+            <div class="f"><label for="t1e">Reading &amp; Writing</label><input class="in num" id="t1e" type="number" inputmode="numeric" min="200" max="800" step="10" value="640" placeholder="200–800"></div>
+          </div>
+          <div class="trio" data-when="t1:act" hidden>
+            <div class="f"><label for="a1m">ACT Math</label><input class="in num" id="a1m" type="number" inputmode="numeric" min="1" max="36" step="1" placeholder="1–36"></div>
+            <div class="f"><label for="a1e">ACT English</label><input class="in num" id="a1e" type="number" inputmode="numeric" min="1" max="36" step="1" placeholder="1–36"></div>
+            <div class="f"><label for="a1r">ACT Reading</label><input class="in num" id="a1r" type="number" inputmode="numeric" min="1" max="36" step="1" placeholder="1–36"></div>
+          </div>
+          <p class="hint" id="t1Total">Pick one test only. SAT and EST scores can't be mixed.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Second test (optional) <span class="w">+15%</span></legend>
+          <div class="seg" role="radiogroup" aria-label="Second test">
+            <label><input type="radio" name="t2" value="none"><span>None</span></label>
+            <label><input type="radio" name="t2" value="est2" checked><span>EST 2</span></label>
+            <label><input type="radio" name="t2" value="act2"><span>ACT 2</span></label>
+          </div>
+          <div class="pair" data-when="t2:est2|act2">
+            <div class="f"><label for="t2a" id="t2aL">EST 2: subject 1</label><input class="in num" id="t2a" type="number" inputmode="numeric" min="200" max="800" step="10" value="700" placeholder="200–800"></div>
+            <div class="f"><label for="t2b" id="t2bL">EST 2: subject 2</label><input class="in num" id="t2b" type="number" inputmode="numeric" min="200" max="800" step="10" value="650" placeholder="200–800"></div>
+          </div>
+        </fieldset>
+      </div>
+
+      <aside class="card res" aria-live="polite" aria-label="Tansik result" id="tRes">
+        <div class="res-top"><span class="tag" id="tLbl">Your estimated total</span><span class="chip" id="tExChip">Example</span></div>
+        <div class="tiles one"><div class="tile main pct"><small>Total</small><b id="tVal">—</b></div></div>
+        <p class="note" id="tMsg" hidden></p>
+        <div class="bk" id="tBk" hidden>
+          <div><div class="bk-h"><span>GPA</span><b id="b1">0</b></div><div class="bar2"><i id="r1" style="width:0"></i></div><small id="d1"></small></div>
+          <div><div class="bk-h"><span>First test</span><b id="b2">0</b></div><div class="bar2"><i id="r2" style="width:0"></i></div><small id="d2"></small></div>
+          <div><div class="bk-h"><span>Second test</span><b id="b3">0</b></div><div class="bar2"><i id="r3" style="width:0"></i></div><small id="d3"></small></div>
+        </div>
+        <p class="max" id="tMax"></p>
+        <div class="rep">
+          <div class="f"><label for="stName2">Student name (optional, shown on the report)</label><input class="in" id="stName2" dir="auto" maxlength="40" autocomplete="off" placeholder="e.g. Ahmed Mohamed"></div>
+          <button class="btn primary" type="button" id="pdfBtn2"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v9M6.5 9l3.5 3.5L13.5 9M4 16h12"/></svg><span>Save PDF report</span></button>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card elig" id="elig" hidden dir="rtl" lang="ar" aria-labelledby="eligH">
+      <h3 id="eligH">الكليات المتاحة لمجموعك</h3>
+      <p class="sum" id="eligSum"></p>
+      <div class="tools" id="eligTools">
+        <div class="f"><label for="eligQ">بحث</label><input class="in" id="eligQ" type="search" autocomplete="off" placeholder="ابحث باسم الكلية أو الجامعة"></div>
+        <span class="cnt" id="eligCnt" aria-live="polite"></span>
+      </div>
+      <div class="tscroll" id="eligWrap" tabindex="0" role="region" aria-label="جدول الكليات">
+        <table class="ft"><thead><tr><th>الكلية</th><th class="n">الحد الأدنى</th></tr></thead><tbody id="eligRows"></tbody></table>
+      </div>
+      <p class="hint" id="eligNext" hidden></p>
+      <p class="hint">الجدول يعرض الحد الأدنى لكل كلية حسب جدول التنسيق الرسمي 2026/2027، ويُقارَن بمجموعك كما يظهر في النتيجة. إذا كان مجموعك أعلى من حد الكلية فهذا مؤشر جيد، لكن القبول الفعلي يعتمد على نتيجة التنسيق والأماكن المتاحة، وقد تتغير الحدود من سنة إلى أخرى.</p>
+      <div class="actions">
+        <a class="btn" href="https://tansik.digital.gov.eg/application/Certificates/Mo3adla/Limits/2026/131.html" target="_blank" rel="noopener">الجدول الكامل على موقع التنسيق <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13l6-6M8 7h5v5"/></svg></a>
+        <a class="btn primary" href="https://tansik.digital.gov.eg/application/main.aspx?Certificate=3" target="_blank" rel="noopener">التقديم على التنسيق الحكومي <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13l6-6M8 7h5v5"/></svg></a>
+      </div>
+    </section>
+
+    <div class="rules">
+      <details>
+        <summary>How the total is calculated</summary>
+        <div class="det">
+          <p>Total = GPA part + first test part + second test part. The result is a percentage and can go above 100%.</p>
+          <div class="tbl">
+            <table>
+              <thead><tr><th></th><th>Government universities</th><th>Private &amp; Ahliya universities</th></tr></thead>
+              <tbody>
+                <tr><th>GPA</th><td>GPA ÷ 4.0 × <b>40</b></td><td>Same method</td></tr>
+                <tr><th>Minimum for the first test</th><td><b>1050</b> out of 1600</td><td><b>800</b> out of 1600</td></tr>
+                <tr><th>First test</th><td>Total ÷ 1600 × <b>60</b>, or × <b>69</b> if the total is <b>1090</b> or more</td><td>Total ÷ 1600 × <b>60</b>, or × <b>75</b> if the total is <b>1090</b> or more</td></tr>
+                <tr><th>Second test</th><td>Counted if the two subjects add up to <b>1100</b> or more: total ÷ 1600 × <b>15</b></td><td>Counted if they add up to <b>900</b> or more: total ÷ 1600 × <b>15</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul>
+            <li>SAT scores are taken from College Board, using your best attempt.</li>
+            <li>ACT scores are converted to a 1600 scale with a conversion table. The official table is set by the coordination office.</li>
+            <li>The Private &amp; Ahliya rules come from an educational calculator and press reports, so check the latest conditions before you apply.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <section class="card rulesec" dir="rtl" lang="ar" aria-labelledby="rsH">
+      <h3 id="rsH">القواعد والأسس الأساسية للقبول 2026</h3>
+      <p class="hint">شروط التنسيق الحكومي للعام 2026/2027.</p>
+      <ul class="rl">
+        <li><span><b>المجموع الاعتباري:</b> يتم حسابه بنسبة 40% لثماني مواد ثانوية دراسية و60% لاختبارات القبول الدولية (SAT I أو البدائل المعتمدة مثل ACT و EST).</span></li>
+        <li><span><b>الحد الأدنى لاختبار SAT I:</b> يشترط ألا يقل مجموع الطالب عن 1050 درجة من 1600.</span></li>
+        <li><span><b>إرسال النتائج:</b> إلزامية إرسال نسخة إلكترونية مباشرة من نتائج اختبار SAT I من موقع College Board إلى الكود المخصص (7437 بهندسة جامعة القاهرة)، ويُستبعد الطالب من الترشيح حال عدم وصول النتيجة.</span></li>
+        <li><span><b>الشروط العامة:</b> ضرورة وجود تسلسل دراسي طبيعي وصحيح، واجتياز المواد المؤهلة لكل كلية، واعتماد المدرسة من جهات رسمية معترف بها (مثل Cognia).</span></li>
+      </ul>
+      <p class="hint">رابط التنسيق 2026/2027: <a href="https://tansik.digital.gov.eg/application/Certificates/Mo3adla/Limits/2026/131.html" target="_blank" rel="noopener">صفحة الحدود الدنيا الرسمية</a></p>
+    </section>
+
+    <div class="foot">
+      <p>Results are estimates for guidance only. The final word comes from the coordination office and the Supreme Council of Universities, and some private universities ask for higher minimums.</p>
+    </div>
+  </section>
+
+  <footer class="credit">Made by Abdulrahman Abed. © 2026 Abdulrahman Abed. All rights reserved.</footer>
+
+  <div class="mini" id="mini" hidden>
+    <div class="m-l"><small id="miniL">GPA</small><span class="m-v" id="miniV">—</span></div>
+    <button class="btn primary" type="button" id="miniGo">Details</button>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Report preview" hidden>
+    <div class="ov-in">
+      <div class="ov-bar"><span>Report preview</span><button class="btn" type="button" id="ovClose">Close</button></div>
+      <p class="hint">Saving a file directly isn't available in this view. Press and hold an image to save it, or take a screenshot.</p>
+      <div id="ovPages"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+var f2=function(n){return n.toFixed(2)};
+function trim(n){return String(+n.toFixed(2))}
+
+/* ============================================================
+   Conversion tables
+   ============================================================ */
+var T={
+  igcse:{
+    letters:[['A*',4],['A',3.85],['B',3.15],['C',2.5],['D',1.85],['E',1.15],['F',0.7],['G',0.3],['U',0]],
+    numbers:[['9',4],['8',3.9],['7',3.6],['6',3.15],['5',2.85],['4',2.5],['3',1.85],['2',1.15],['1',0.5]]
+  },
+  ib:[['7',4],['6',3.85],['5',3.15],['4',2.5],['3',1.85],['2',1.15],['1',0.35]],
+  us:[
+    {l:'A+',min:97,pts:4,mid:98.5},{l:'A',min:93,pts:4,mid:94.5},{l:'A-',min:90,pts:3.7,mid:91},
+    {l:'B+',min:87,pts:3.3,mid:88},{l:'B',min:83,pts:3,mid:84.5},{l:'B-',min:80,pts:2.7,mid:81},
+    {l:'C+',min:77,pts:2.3,mid:78},{l:'C',min:73,pts:2,mid:74.5},{l:'C-',min:70,pts:1.7,mid:71},
+    {l:'D+',min:67,pts:1.3,mid:68},{l:'D',min:63,pts:1,mid:65},{l:'D-',min:60,pts:0.7,mid:61},{l:'F',min:0,pts:0,mid:50}
+  ],
+  ca:[
+    {l:'A+',min:90,pts:4,mid:95},{l:'A',min:85,pts:4,mid:87},{l:'A-',min:80,pts:3.7,mid:82},
+    {l:'B+',min:77,pts:3.3,mid:78},{l:'B',min:73,pts:3,mid:74.5},{l:'B-',min:70,pts:2.7,mid:71},
+    {l:'C+',min:67,pts:2.3,mid:68},{l:'C',min:63,pts:2,mid:64.5},{l:'C-',min:60,pts:1.7,mid:61},
+    {l:'D+',min:57,pts:1.3,mid:58},{l:'D',min:53,pts:1,mid:54.5},{l:'D-',min:50,pts:0.7,mid:51},{l:'F',min:0,pts:0,mid:40}
+  ]
+};
+var IB_BONUS={hl:1,sl:0.5};
+var AM_BONUS={r:0,h:0.5,a:1};
+var AM_LV={r:'Regular',h:'Honors',a:'AP / IB'};
+var SUBJECTS={
+  igcse:['Mathematics','Additional Mathematics','English Language','English Literature','Physics','Chemistry','Biology','Combined Science','Coordinated Science','Economics','Business Studies','Computer Science','ICT','Accounting','History','Geography','French','Spanish','German','Arabic','English as a Second Language','Religious Studies'],
+  ib:['Mathematics AA','Mathematics AI','Physics','Chemistry','Biology','English A: Literature','English A: Language and Literature','Arabic A','French B','Spanish B','History','Economics','Business Management','Computer Science','Psychology','Geography','Global Politics','Visual Arts'],
+  american:['English 9','English 10','English 11','English 12','Algebra II','Geometry','Pre-Calculus','Calculus AB','Statistics','Biology','Chemistry','Physics','US History','World History','Spanish','French','Computer Science','Art','Physical Education']
+};
+var SAMPLE={
+  igcse:{names:['Mathematics','Physics','Chemistry','Biology','English Language','Computer Science','Business Studies'],grades:['A*','A','A','B','A','A*','B']},
+  ib:[['English A: Literature','hl','6'],['French B','sl','7'],['History','hl','5'],['Mathematics AA','sl','6'],['Physics','hl','6'],['Chemistry','sl','5']],
+  american:{names:['English 11','Pre-Calculus','AP Biology','US History','Spanish II','Physical Education'],letters:['A','A-','B+','A','B+','A'],pct:['96','91','88','94','87','97'],credits:['1','1','1','1','1','0.5'],level:['r','h','a','r','r','r']}
+};
+
+/* ============================================================
+   State
+   ============================================================ */
+var G={
+  name:'',
+  igcse:{rows:[],ex:true},
+  ib:{bonus:'2',rows:[],ex:true},
+  american:{style:'us',mode:'letter',rows:[],ex:true}
+};
+var cur='home';
+function sampleRows(calc){
+  var S=SAMPLE[calc];
+  if(calc==='igcse') return S.names.map(function(n,i){return {name:n,grade:S.grades[i]}});
+  if(calc==='ib') return S.map(function(r){return {name:r[0],level:r[1],grade:r[2]}});
+  return S.names.map(function(n,i){return {name:n,grade:S.letters[i],pct:S.pct[i],credits:S.credits[i],level:S.level[i]}});
+}
+function blankRow(calc){
+  if(calc==='igcse') return {name:'',grade:''};
+  if(calc==='ib') return {name:'',level:'sl',grade:''};
+  return {name:'',grade:'',pct:'',credits:'1',level:'r'};
+}
+['igcse','ib','american'].forEach(function(c){G[c].rows=sampleRows(c)});
+
+function lookup(items,l){for(var i=0;i<items.length;i++){if(items[i][0]===l)return items[i][1]}return null}
+function bandFor(bands,p){for(var i=0;i<bands.length;i++){if(p>=bands[i].min)return bands[i]}return bands[bands.length-1]}
+function bonusOK(p){return p>=1}
+
+function evalRow(calc,r){
+  var st=G[calc],p;
+  if(calc==='igcse'){
+    p=lookup(T.igcse.letters,r.grade);
+    if(p==null) p=lookup(T.igcse.numbers,r.grade);
+    return p==null?null:{pts:p,wpts:p,credit:1,grade:r.grade,level:'',gnum:null,pct:null};
+  }
+  if(calc==='ib'){
+    p=lookup(T.ib,r.grade);
+    if(p==null) return null;
+    return {pts:p,wpts:p+(bonusOK(p)?IB_BONUS[r.level]:0),credit:1,grade:r.grade,level:r.level.toUpperCase(),gnum:+r.grade,pct:null};
+  }
+  var cr=parseFloat(r.credits);
+  if(!(cr>0)) return null;
+  var bands=st.style==='ca'?T.ca:T.us,pct=null,label,b;
+  if(st.mode==='pct'){
+    var v=parseFloat(r.pct);
+    if(r.pct===''||!isFinite(v)||v<0||v>100) return null;
+    b=bandFor(bands,v);p=b.pts;pct=v;label=b.l+' ('+trim(v)+'%)';
+  }else{
+    b=bands.filter(function(x){return x.l===r.grade})[0];
+    if(!b) return null;
+    p=b.pts;pct=b.mid;label=b.l;
+  }
+  return {pts:p,wpts:p+(bonusOK(p)?AM_BONUS[r.level]:0),credit:cr,grade:label,level:AM_LV[r.level],gnum:null,pct:pct};
+}
+function summarize(calc){
+  var st=G[calc],cr=0,q=0,w=0,pc=0,pcCr=0,n=0,sum=0,ev=[];
+  st.rows.forEach(function(r){
+    var e=evalRow(calc,r);ev.push(e);
+    if(!e) return;
+    n++;cr+=e.credit;q+=e.pts*e.credit;w+=e.wpts*e.credit;
+    if(e.pct!=null){pc+=e.pct*e.credit;pcCr+=e.credit}
+    if(e.gnum!=null) sum+=e.gnum;
+  });
+  return {n:n,total:st.rows.length,ev:ev,credits:cr,gpa:n?q/cr:null,wgpa:n?Math.min(w/cr,5):null,
+    pct:pcCr?pc/pcCr:null,ibPoints:(calc==='ib'&&n===6&&st.rows.length===6)?sum+(+st.bonus):null};
+}
+
+/* ============================================================
+   Calculator form
+   ============================================================ */
+function seg(name,opts,curv,cls){
+  return '<div class="seg'+(cls?' '+cls:'')+'" role="radiogroup">'+opts.map(function(o){
+    return '<label><input type="radio" name="'+name+'" value="'+o[0]+'"'+(String(o[0])===String(curv)?' checked':'')+' data-opt="'+name+'"><span>'+esc(o[1])+(o[2]?'<small>'+esc(o[2])+'</small>':'')+'</span></label>';
+  }).join('')+'</div>';
+}
+function opts(items,curv){return items.map(function(it){return '<option value="'+esc(it)+'"'+(it===curv?' selected':'')+'>'+esc(it)+'</option>'}).join('')}
+function gradeOptions(items,curv){return '<option value="">Select</option>'+opts(items,curv)}
+function igcseGradeOptions(curv){
+  return '<option value="">Select</option>'+
+    '<optgroup label="Letters (A* – U)">'+opts(T.igcse.letters.map(function(x){return x[0]}),curv)+'</optgroup>'+
+    '<optgroup label="Numbers (9 – 1)">'+opts(T.igcse.numbers.map(function(x){return x[0]}),curv)+'</optgroup>';
+}
+function rowHTML(calc,r,i){
+  var st=G[calc];
+  var names='<div class="f f-name"><label for="n'+i+'">Subject</label><input id="n'+i+'" class="in" data-k="name" list="dl-'+calc+'" autocomplete="off" dir="auto" value="'+esc(r.name)+'" placeholder="Subject name"></div>';
+  var end='<div class="f-end"><output class="pts" id="p'+i+'" title="Course points">—</output><button class="x" type="button" data-del="'+i+'" aria-label="Remove subject">×</button></div>';
+  if(calc==='igcse'){
+    return '<div class="row r-ig" data-i="'+i+'">'+names+'<div class="f"><label for="g'+i+'">Grade</label><select id="g'+i+'" class="in" data-k="grade">'+igcseGradeOptions(r.grade)+'</select></div>'+end+'</div>';
+  }
+  if(calc==='ib'){
+    return '<div class="row r-ib" data-i="'+i+'">'+names+
+      '<div class="f"><span class="lbl" id="ll'+i+'">Level</span><div class="seg sm" role="radiogroup" aria-labelledby="ll'+i+'">'+
+        ['hl','sl'].map(function(v){return '<label><input type="radio" name="lv'+i+'" value="'+v+'" data-k="level"'+(r.level===v?' checked':'')+'><span>'+v.toUpperCase()+'</span></label>'}).join('')+'</div></div>'+
+      '<div class="f"><label for="g'+i+'">Grade (1 – 7)</label><select id="g'+i+'" class="in" data-k="grade">'+gradeOptions(T.ib.map(function(x){return x[0]}),r.grade)+'</select></div>'+end+'</div>';
+  }
+  var usePct=st.mode==='pct',bands=st.style==='ca'?T.ca:T.us;
+  var grade=usePct
+    ?'<input id="g'+i+'" class="in num" data-k="pct" type="number" inputmode="decimal" min="0" max="100" step="0.1" placeholder="0–100" value="'+esc(r.pct)+'">'
+    :'<select id="g'+i+'" class="in" data-k="grade">'+gradeOptions(bands.map(function(b){return b.l}),r.grade)+'</select>';
+  return '<div class="row r-us" data-i="'+i+'">'+names+
+    '<div class="f"><label for="g'+i+'">'+(usePct?'Grade %':'Grade')+'</label>'+grade+'</div>'+
+    '<div class="f"><label for="c'+i+'">Credits</label><input id="c'+i+'" class="in num" data-k="credits" type="number" inputmode="decimal" min="0" step="0.5" value="'+esc(r.credits)+'"></div>'+
+    '<div class="f f-wide"><label for="l'+i+'">Level</label><select id="l'+i+'" class="in" data-k="level">'+Object.keys(AM_LV).map(function(k){return '<option value="'+k+'"'+(r.level===k?' selected':'')+'>'+AM_LV[k]+(AM_BONUS[k]?' +'+AM_BONUS[k].toFixed(1):'')+'</option>'}).join('')+'</select></div>'+
+    end+'</div>';
+}
+function formHTML(calc){
+  var st=G[calc],h='';
+  if(calc==='igcse'){
+    h+='<fieldset><legend>Grades</legend><p class="note">IGCSE is calculated unweighted, so there is no Honors bonus. Letters: A* = 4.0, A = 3.85, B = 3.15, C = 2.5, D = 1.85. Numbers: 9 = 4.0, 8 = 3.9, 7 = 3.6, 6 = 3.15, 5 = 2.85, 4 = 2.5.</p></fieldset>';
+  }
+  if(calc==='american'){
+    h+='<fieldset><legend>Grading scale</legend>'+seg('ustyle',[['us','American','A = 93+'],['ca','Canadian','A = 85+']],st.style)+
+       '<p class="note" id="usNote"></p></fieldset>';
+  }
+  h+='<fieldset><legend>Subjects and grades</legend>';
+  if(calc==='american') h+=seg('umode',[['letter','Letter grades'],['pct','Percentages']],st.mode);
+  h+='<div class="rows" id="rows">'+st.rows.map(function(r,i){return rowHTML(calc,r,i)}).join('')+'</div>'+
+     '<div class="actions"><button class="btn" type="button" id="addRow">+ Add subject</button><button class="btn link" type="button" id="clearRows"'+(st.ex?'':' hidden')+'>Clear examples</button></div>'+
+     '<p class="hint" id="exHint"'+(st.ex?'':' hidden')+'>The subjects shown are examples. Edit them, or clear them and add your own.</p></fieldset>';
+  if(calc==='ib'){
+    h+='<fieldset><legend>TOK and Extended Essay</legend><div class="f" style="max-width:260px"><label for="ibBonus">Bonus points (0 to 3)</label><select id="ibBonus" class="in" data-opt="bonus">'+
+       [0,1,2,3].map(function(n){return '<option value="'+n+'"'+(String(n)===String(st.bonus)?' selected':'')+'>'+n+'</option>'}).join('')+'</select></div>'+
+       '<p class="hint">These are added to the total of your 6 subjects (maximum 42) to give your diploma points out of 45.</p></fieldset>';
+  }
+  return h;
+}
+function renderForm(){
+  $('#cForm').innerHTML=formHTML(cur);
+  if(cur==='american') $('#usNote').textContent=G.american.style==='ca'
+    ?'The common Canadian 4.0 scale (A+ starts at 90%). Some universities use a different table, so treat the result as an estimate.'
+    :'The standard 4.0 scale (A+ and A = 4.0). Honors adds 0.5 and AP or IB adds 1.0. Check your own school’s policy.';
+  updateCalc();
+}
+
+var COPY={
+  igcse:{title:'IGCSE GPA Calculator',lede:'Enter each subject and its grade, as a letter (A* to U) or a number (9 to 1). Your GPA updates as you type.'},
+  ib:{title:'IB DP GPA Calculator',lede:'Enter each subject’s grade from 1 to 7 and its level, HL or SL. The weighted GPA treats HL like AP and SL like Honors.'},
+  american:{title:'American GPA Calculator',lede:'Enter each course with its grade, credits and level. You get both the regular and the weighted GPA.'}
+};
+function updateCalc(){
+  if(!G[cur]||cur==='tansik'||cur==='home') return;
+  var calc=cur,st=G[calc],S=summarize(calc),weighted=calc!=='igcse';
+  S.ev.forEach(function(e,i){var o=$('#p'+i);if(o)o.textContent=e?e.pts.toFixed(2):'—'});
+  $('#rV1').textContent=S.n?S.gpa.toFixed(2):'—';
+  $('#rV2').textContent=S.n?S.wgpa.toFixed(2):'—';
+  $('#rT2').hidden=!weighted;
+  $('#rTiles').className='tiles'+(weighted?'':' one');
+  $('#rBar').style.width=S.n?(Math.min(S.gpa/4,1)*100)+'%':'0';
+  var kv='';
+  if(S.n) kv+='<div><dt>Subjects counted</dt><dd>'+S.n+'</dd></div>';
+  if(S.n&&calc==='american'){
+    kv+='<div><dt>Total credits</dt><dd>'+trim(S.credits)+'</dd></div>';
+    if(S.pct!=null) kv+='<div><dt>'+(st.mode==='pct'?'Average percentage':'Average percentage (estimated)')+'</dt><dd>'+S.pct.toFixed(1)+'%</dd></div>';
+  }
+  if(calc==='ib') kv+='<div><dt>Diploma points</dt><dd>'+(S.ibPoints!=null?S.ibPoints+' / 45':'—')+'</dd></div>';
+  $('#rKv').innerHTML=kv;
+  var msg=$('#rMsg'),m='',kind='';
+  if(!S.n){m='Pick a grade for at least one subject to see your GPA.'}
+  else if(S.total>S.n){var miss=S.total-S.n;m=miss+(miss===1?' subject is':' subjects are')+' missing a grade'+(calc==='american'?' or credits':'')+' and not counted.';kind='warn'}
+  else if(calc==='ib'&&S.ibPoints==null){m='Add exactly 6 subjects to see your total out of 45 points.'}
+  else if(calc==='ib'&&S.ibPoints!=null){m='The minimum for the IB Diploma is 24 points, with extra conditions such as limits on low grades.'}
+  msg.hidden=!m;msg.className='note'+(kind?' '+kind:'');msg.textContent=m;
+  $('#rEx').hidden=!st.ex;
+  $('#pdfBtn').disabled=!S.n;
+  $('#toTansik').hidden=!(calc==='american'&&S.n>0);
+  $('#miniV').textContent=S.n?S.gpa.toFixed(2):'—';
+  $('#miniL').textContent='GPA (out of 4.0)';
+  refreshImport();
+}
+function americanGpa(){var S=summarize('american');return S.n?S.gpa:null}
+function refreshImport(){
+  var g=americanGpa(),b=$('#importBtn');
+  b.disabled=g==null;
+  b.textContent=g==null?'Use my American GPA':'Use my American GPA ('+g.toFixed(2)+')';
+}
+
+/* calculator form events */
+function afterEdit(){var st=G[cur];if(st.ex){st.ex=false;var a=$('#exHint'),b=$('#clearRows');if(a)a.hidden=true;if(b)b.hidden=true}}
+function formEvent(e){
+  var t=e.target,calc=cur,st=G[calc];
+  var opt=t.getAttribute&&t.getAttribute('data-opt');
+  if(opt&&e.type==='change'){
+    if(opt==='ustyle'){st.style=t.value;renderForm();return}
+    if(opt==='umode'){st.mode=t.value;renderForm();return}
+    if(opt==='bonus'){st.bonus=t.value;afterEdit();updateCalc();return}
+  }
+  var k=t.getAttribute&&t.getAttribute('data-k');
+  if(!k) return;
+  var row=t.closest('.row');if(!row) return;
+  var i=+row.getAttribute('data-i');
+  if(t.type==='radio'&&!t.checked) return;
+  st.rows[i][k]=t.value;
+  afterEdit();updateCalc();
+}
+$('#cForm').addEventListener('input',formEvent);
+$('#cForm').addEventListener('change',formEvent);
+$('#cForm').addEventListener('click',function(e){
+  var st=G[cur],b=e.target.closest('[data-del]');
+  if(b){
+    st.rows.splice(+b.getAttribute('data-del'),1);st.ex=false;
+    if(!st.rows.length) st.rows.push(blankRow(cur));
+    renderForm();return;
+  }
+  if(e.target.closest('#addRow')){
+    st.rows.push(blankRow(cur));st.ex=false;renderForm();
+    var l=$('#n'+(st.rows.length-1));if(l) l.focus();return;
+  }
+  if(e.target.closest('#clearRows')){
+    st.rows=[blankRow(cur)];st.ex=false;renderForm();var f=$('#n0');if(f) f.focus();
+  }
+});
+
+/* ============================================================
+   Egyptian Tansik
+   ============================================================ */
+var RULES={
+  gov:{label:'government universities',title:'Government universities',min1:1050,bonusAt:1090,mBase:60,mBonus:69,min2:1100},
+  priv:{label:'private & Ahliya universities',title:'Private & Ahliya universities',min1:800,bonusAt:1090,mBase:60,mBonus:75,min2:900}
+};
+var GPA_W=40,P2_W=15,FULL=1600;
+var ACT_MATH={36:800,35:780,34:760,33:740,32:720,31:710,30:700,29:680,28:660,27:640,26:610,25:590,24:580,23:560,22:540,21:530,20:520,19:510,18:500,17:470,16:430,15:400,14:360,13:330,12:310,11:280,10:260};
+var ACT_ENG={72:790,71:770,70:750,69:740,68:730,67:720,66:710,65:700,64:700,63:690,62:680,61:680,60:670,59:660,58:660,57:650,56:640,55:640,54:630,53:630,52:620,51:610,50:610,49:600,48:590,47:580,46:580,45:570,44:560,43:550,42:540,41:540,40:520,39:520,38:510,37:500,36:500,35:490,34:480,33:470,32:460,31:450,30:440,29:430,28:420,27:410,26:400,25:390,24:380,23:370,22:360,21:350,20:340,19:330,18:320,17:310,16:300,15:290,14:280};
+
+function gv(name){var c=$('input[name="'+name+'"]:checked');return c?c.value:''}
+function numOf(sel){var v=$(sel).value.trim();if(v==='')return null;var n=Number(v);return isFinite(n)?n:NaN}
+function syncGroups(){
+  $$('#v-tansik [data-when]').forEach(function(el){
+    var p=el.getAttribute('data-when').split(':'),vals=p[1].split('|');
+    el.hidden=vals.indexOf(gv(p[0]))<0;
+  });
+  var a=(gv('t2')==='act2'),n=a?'ACT 2':'EST 2';
+  $('#t2aL').textContent=n+': subject 1';
+  $('#t2bL').textContent=n+': subject 2';
+  ['#t2a','#t2b'].forEach(function(s){var el=$(s);el.min=a?1:200;el.max=a?36:800;el.step=a?1:10;el.placeholder=a?'1–36':'200–800'});
+}
+function gpaPart(){
+  var v=numOf('#tGpa'),h=$('#tGpaHint');
+  if(v===null){h.textContent='GPA part = your GPA ÷ 4.0 × 40, so a 4.0 gives the full 40 points.';return {s:'empty',need:'your GPA'}}
+  if(isNaN(v)||v<0||v>4){h.textContent='GPA part = your GPA ÷ 4.0 × 40, so a 4.0 gives the full 40 points.';return {s:'bad',msg:'GPA must be between 0 and 4.0.'}}
+  var pts=v/4*GPA_W;
+  h.textContent='GPA part = '+v.toFixed(2)+' ÷ 4.0 × 40 = '+pts.toFixed(2)+' points out of 40.';
+  return {s:'ok',gpa:v,pts:pts};
+}
+function part1(){
+  var t=gv('t1');
+  if(t==='act'){
+    var m=numOf('#a1m'),e=numOf('#a1e'),r=numOf('#a1r');
+    if(m===null||e===null||r===null) return {s:'empty',need:'your ACT scores'};
+    if([m,e,r].some(function(x){return isNaN(x)||x<1||x>36||Math.floor(x)!==x})) return {s:'bad',msg:'ACT scores must be whole numbers between 1 and 36.'};
+    var cm=ACT_MATH[m],ce=ACT_ENG[e+r];
+    if(cm==null||ce==null) return {s:'bad',msg:'This ACT score is below the conversion table range (Math 10 or more, and English + Reading adding up to 14 or more).'};
+    return {s:'ok',total:cm+ce,conv:true,note:'Math '+cm+' + English '+ce};
+  }
+  var a=numOf('#t1m'),b=numOf('#t1e');
+  if(a===null||b===null) return {s:'empty',need:'your first test scores'};
+  if(isNaN(a)||isNaN(b)||a<200||a>800||b<200||b>800) return {s:'bad',msg:'Each section of the '+(t==='sat'?'SAT':'EST')+' must be between 200 and 800.'};
+  return {s:'ok',total:a+b,note:'Math '+a+' + Reading & Writing '+b};
+}
+function part2(){
+  var t=gv('t2');
+  if(t==='none') return {s:'none'};
+  var a=numOf('#t2a'),b=numOf('#t2b');
+  if(a===null&&b===null) return {s:'none'};
+  if(a===null||b===null) return {s:'half'};
+  if(t==='act2'){
+    if([a,b].some(function(x){return isNaN(x)||x<1||x>36||Math.floor(x)!==x})) return {s:'bad',msg:'ACT 2 scores must be whole numbers between 1 and 36.'};
+    if(ACT_MATH[a]==null||ACT_MATH[b]==null) return {s:'bad',msg:'This ACT 2 score is below the conversion table range (10 or more).'};
+    return {s:'ok',total:ACT_MATH[a]+ACT_MATH[b]};
+  }
+  if(isNaN(a)||isNaN(b)||a<200||a>800||b<200||b>800) return {s:'bad',msg:'Each EST 2 subject must be between 200 and 800.'};
+  return {s:'ok',total:a+b};
+}
+function setBar(i,val,max,det){
+  $('#b'+i).textContent=f2(val);
+  $('#r'+i).style.width=Math.max(0,Math.min(val/max,1))*100+'%';
+  $('#d'+i).textContent=det;
+}
+var FAC=[["طب القاهرة",123.137497],["طب الإسكندرية",123.137497],["طب عين شمس",122.762497],["طب أسيوط",122.706253],["طب أسنان القاهرة",122.706253],["طب العاصمة بحلوان",122.631248],["طب بنها",122.506248],["طب المنوفية بشبين الكوم",122.275002],["طب الزقازيق",122.275002],["طب طنطا",122.275002],["طب المنصورة",122.275002],["طب كفر الشيخ",122.143753],["طب المنيا",122.125],["طب دمياط",122.106247],["طب الفيوم",122.087502],["طب بور سعيد",121.993752],["طب سوهاج",121.993752],["طب السادات",121.993752],["طب بني سويف",121.9],["طب السويس",121.84375],["طب قناة السويس بالإسماعيلية",121.84375],["طب قنا",121.712502],["طب الاقصر",121.662498],["طب العريش",121.65625],["طب الوادي الجديد",121.65625],["طب أسوان",121.512497],["طب أسنان عين شمس",121.506248],["طب أسنان الفيوم",121.498001],["طب أسنان الإسكندرية",121.46875],["طب أسنان المنوفية",121.46875],["طب أسنان أسيوط",121.456253],["طب أسنان الزقازيق",121.412498],["طب أسنان المنيا",121.412498],["طب أسنان المنصورة",121.412498],["طب أسنان طنطا",121.412498],["طب أسنان قناة السويس بالإسماعيلية",121.393753],["طب أسنان كفر الشيخ",121.337502],["طب أسنان السويس",121.333252],["طب أسنان بني سويف",121.318748],["طب أسنان قنا",121.28125],["طب وجراحة الفم والأسنان سوهاج",121.243752],["صيدلة الإسكندرية",121.224998],["صيدلة المنوفية",121.224998],["صيدلة المنصورة",121.224998],["صيدلة طنطا",121.131248],["صيدلة القاهرة",121.098503],["صيدلة و تصنيع دوائي كفر الشيخ",121.09375],["صيدلة مدينة السادات",121.09375],["صيدلة عين شمس",121.037498],["صيدلة العاصمة بحلوان",120.981247],["علاج طبيعي القاهرة",120.981247],["صيدلة أسيوط",120.943748],["صيدلة الزقازيق",120.903748],["صيدلة قنا",120.887497],["علاج طبيعي كفر الشيخ",120.881248],["صيدلة المنيا",120.868752],["صيدلة الفيوم",120.862503],["صيدلة بني سويف",120.85],["علاج طبيعي بنها",120.849998],["علاج طبيعي قناة السويس",120.793747],["علاج طبيعي بورسعيد",120.793747],["صيدلة بور سعيد",120.793747],["علاج طبيعي السويس",120.787498],["صيدلة قناة السويس بالإسماعيلية",120.743752],["علاج طبيعي بني سويف",120.7],["علاج طبيعي قنا",120.668747],["صيدلة دمنهور",120.662498],["صيدلة ج الوادي الجديد",120.65],["صيدلة سوهاج",120.618752],["هندسة بترول و تعدين السويس",120.606247],["هندسة الطاقة أسوان",120.512497],["هندسة القاهرة",120.45],["هندسة الإسكندرية",120.34375],["هندسة عين شمس",120.135246],["هندسة أسيوط",120.09375],["هندسة طنطا",119.881248],["كلية الهندسة جامعة دمنهور",119.8],["هندسة المنيا",119.743752],["هندسة العاصمة بحلوان",119.6875],["هندسة العاصمة بالمطرية",119.556252],["هندسة كفر الشيخ",119.556252],["هندسة بنها بشبرا",119.537498],["هندسة بنها",119.368752],["هندسة المنصورة",119.262497],["هندسة قنا",119.25],["هندسة المنوفية بشبين الكوم",119.181252],["هندسة الفيوم",119.125],["هندسة أسوان",119.018753],["هندسة إلكترونية المنوفية بمنوف",119.018753],["هندسة دمياط",118.9375],["هندسة بني سويف",118.918747],["هندسة الزقازيق",118.917503],["هندسة السويس",118.881248],["هندسة بور سعيد",118.856247],["هندسة قناة السويس بالإسماعيلية",118.84375],["هندسة الوادي الجديد",118.824997],["هندسة سوهاج",118.8],["تخطيط عمراني القاهرة",118.675003],["حاسبات و علوم البيانات الإسكندرية رياضة",118.525002],["طب بيطري عين شمس",118.45],["حاسبات و ذكاء إصطناعي القاهرة رياضة",118.21875],["حاسبات ومعلومات عين شمس رياضة",118.0],["حاسبات و ذكاء إصطناعي العاصمة بحلوان رياضة",117.387497],["علوم البترول والتعدين مطروح",117.324997],["حاسبات ومعلومات طنطا رياضة",116.95],["طب بيطري الإسكندرية",116.84375],["حاسبات ومعلومات دمنهور بالنوبارية رياضة",116.5],["حاسبات و ذكاء إصطناعي القاهرة علوم",116.35],["الذكاء الاصطناعى كفر الشيخ رياضة",116.156754],["حاسبات ومعلومات عين شمس علوم",116.081253],["حاسبات ومعلومات المنوفية بشبين الكوم رياضة",116.0625],["حاسبات ومعلومات أسيوط رياضة",115.8],["حاسبات ومعلومات المنيا رياضة",115.724998],["حاسبات و ذكاء إصطناعي بنها رياضة",115.637497],["ذكاء إصطناعي المنوفية شبين الكوم رياضة",115.186996],["اقتصاد و علوم سياسية القاهرة",115.131248],["حاسبات و ذكاء إصطناعي العاصمة بحلوان علوم",115.073997],["حاسبات ومعلومات المنصورة رياضة",114.925003],["حاسبات و علوم البيانات الإسكندرية علوم",114.912498],["حاسبات ومعلومات الفيوم رياضة",114.697746],["حاسبات ومعلومات كفر الشيخ رياضة",114.587502],["حاسبات و ذكاء إصطناعي الغردقة رياضة",113.9],["حاسبات و معلومات العريش رياضة",113.84375],["حاسبات وذكاء اصطناعي السادات رياضة",113.731247],["طب بيطري القاهرة",113.45],["حاسبات و ذكاء إصطناعي بنها علوم",113.40625],["حاسبات وذكاء اصطناعي مطروح رياضة",113.15625],["حاسبات ومعلومات الزقازيق رياضة",113.087502],["فنون جميلة (عمارة) العاصمة بحلوان",112.6875],["حاسبات ومعلومات السويس رياضة",112.6],["حاسبات ومعلومات دمنهور بالنوبارية علوم",112.337502],["حاسبات ومعلومات الأقصر رياضة",112.243752],["حاسبات ومعلومات دمياط رياضة",111.806252],["حاسبات ومعلومات بني سويف رياضة",111.662498],["حاسبات ومعلومات سوهاج رياضة",111.643753],["حاسبات ومعلومات قنا رياضة",111.6],["حاسبات ومعلومات قناة السويس بالإسماعيلية رياضة",111.418747],["الدراسات الاقتصادية و العلوم السياسة الإسكندرية",111.118752],["طب بيطري أسيوط",111.025002],["حاسبات ومعلومات طنطا علوم",110.95],["إعلام القاهرة",110.762497],["حاسبات ومعلومات المنوفية بشبين الكوم علوم",110.706253],["معهد العبور العالي للهندسه والتكنولوجيا بمصروفات",110.512497],["حاسبات ومعلومات أسيوط علوم",110.03125],["حاسبات ومعلومات المنيا علوم",109.856247],["حاسبات ومعلومات سوهاج علوم",109.5],["طب بيطري المنوفية",109.393753],["سياسة واقتصاد السويس",108.46875],["حاسبات ومعلومات الفيوم علوم",108.3125],["الذكاء الاصطناعى كفر الشيخ علوم",107.987503],["ذكاء إصطناعي المنوفية شبين الكوم علوم",107.981247],["إعلام عين شمس",107.893753],["حاسبات ومعلومات كفر الشيخ علوم",107.862503],["حاسبات ومعلومات بني سويف علوم",107.6875],["طب بيطري كفر الشيخ",107.59375],["فنون جميلة (عمارة) الإسكندرية",107.443748],["طب بيطري دمنهور",107.112503],["حاسبات و ذكاء إصطناعي الغردقة علوم",106.926003],["حاسبات و معلومات العريش علوم",106.887497],["طب بيطري بنها",106.85],["حاسبات ومعلومات المنصورة علوم",106.712502],["حاسبات ومعلومات قنا علوم",105.95],["حاسبات ومعلومات الزقازيق علوم",105.868752],["حاسبات وذكاء اصطناعي السادات علوم",105.806252],["حاسبات ومعلومات الأقصر علوم",105.206253],["طب بيطري المنصورة",104.871246],["معهد عالي كندي تكنولوجيا هندسة ت.خامس",104.868752],["حاسبات وذكاء اصطناعي مطروح علوم",104.831253],["حاسبات ومعلومات قناة السويس بالإسماعيلية علوم",104.768753],["حاسبات ومعلومات دمياط علوم",104.59375],["سياسة واقتصاد بني سويف",104.587502],["حاسبات ومعلومات السويس علوم",104.587502],["معهد عالي هندسه 6 اكتوبر بمصروفات",104.481247],["إعلام المنوفية",104.275002],["علوم البترول والتعدين مطروح - علوم",103.862503],["الاكاديمية الدولية لعلوم الإعلام (شعبة هندسة )6اكتوبر",103.268753],["فنون جميلة (عمارة) المنصورة",102.3875],["ألسن عين شمس",102.231247],["معهد الإسكندرية العالي للتكنولوجيا بسموحة بمصروفات",101.631248],["فنون جميلة (فنون) العاصمة بحلوان",100.668747],["فنون جميلة (فنون) الإسكندرية",99.6875],["العالي للهندسة والتكنولوجيا التجمع الخامس",98.643753],["ألسن الفيوم",98.056252],["ألسن كفر الشيخ",97.918747],["حقوق المنيا",97.731247],["ألسن الغردقة",96.418747],["إعلام بني سويف",95.15],["إعلام وتكنولوجيا اتصال السويس",94.381248],["ألسن قناة السويس بالإسماعيلية",93.224998],["تجارة القاهرة",91.737503],["معهد هندسة وتكنولوجيا الطيران إمبابة جيزة بمصروفات",91.012497],["الاكاديمية المصرية للهندسة والتكنولوجيا المتقدمة وزارة الانتاج الحربى",90.08125],["فنون تطبيقية العاصمة بحلوان",90.050003],["تجارة انتساب موجه القاهرة",89.456253],["فنون جميلة (فنون) المنصورة",89.256248],["حقوق القاهرة",88.224998],["تجارة عين شمس",88.212502],["تجارة انتساب موجه عين شمس",87.8],["ألسن أسوان",87.55],["ألسن بني سويف",87.1875],["تجارة و إدارة أعمال العاصمة بحلوان",87.037498],["تجارة و إدارة أعمال انتساب موجه العاصمة بحلوان",86.706253],["الاهرامات العالي للهندسة والتكنولوجيا -6 اكتوبر",85.85625],["حقوق انتساب موجه القاهرة",85.756248],["حقوق انتساب موجه عين شمس",84.956253],["المعهد العالى للهندسة والتكنولوجيا بكنج مريوط",83.012497],["ألسن الأقصر",80.25],["حقوق انتساب موجه بني سويف",79.25],["حقوق بني سويف",78.875],["حقوق عين شمس",78.668747],["ألسن المنيا",78.474998]];
+var eligOk=[];
+function normAr(t){return String(t).toLowerCase().replace(/[\u064B-\u0652\u0640]/g,'').replace(/[\u0623\u0625\u0622]/g,'\u0627').replace(/\u0629/g,'\u0647').replace(/\u0649/g,'\u064A').replace(/\s+/g,' ').trim()}
+function eligRows(){
+  var q=normAr($('#eligQ').value),list=q?eligOk.filter(function(r){return normAr(r[0]).indexOf(q)>=0}):eligOk;
+  $('#eligRows').innerHTML=list.length?list.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td class="n">'+r[1].toFixed(2)+'</td></tr>'}).join(''):'<tr><td colspan="2">لا توجد نتائج مطابقة للبحث.</td></tr>';
+  $('#eligCnt').textContent=q?'النتائج: '+list.length+' من '+eligOk.length:'عدد الكليات: '+eligOk.length;
+}
+function renderElig(){
+  var box=$('#elig');
+  if(!TL||TL.uni!=='gov'){box.hidden=true;return}
+  var tot=TL.total,t2=f2(tot);
+  eligOk=FAC.filter(function(r){return r[1]<=tot});
+  var has=eligOk.length>0,nx=$('#eligNext');
+  $('#eligTools').hidden=!has;$('#eligWrap').hidden=!has;
+  if(has){
+    $('#eligSum').innerHTML='مجموعك <b>'+t2+'%</b> يؤهلك لـ <b>'+eligOk.length+'</b> كلية من أصل <b>'+FAC.length+'</b> في الجدول، مرتبة من الأعلى حدًا إلى الأدنى:';
+    eligRows();
+  }else{
+    $('#eligSum').innerHTML='مجموعك <b>'+t2+'%</b> أقل من أقل حد أدنى في الجدول (<b>'+FAC[FAC.length-1][1].toFixed(2)+'%</b>)، لذلك لا توجد كليات في الجدول متاحة لمجموعك حاليًا.';
+  }
+  var up=FAC.filter(function(r){return r[1]>tot}).pop();
+  if(up){nx.hidden=false;nx.textContent='أقرب كلية فوق مجموعك: '+up[0]+' (الحد الأدنى '+up[1].toFixed(2)+'%)، ينقصك '+f2(up[1]-tot)+' نقطة.'}
+  else nx.hidden=true;
+  box.hidden=false;
+}
+$('#eligQ').addEventListener('input',eligRows);
+var TL=null,tTouched=false;
+function tShow(num,label,msgs,kind){
+  $('#tVal').textContent=num;
+  $('#tLbl').textContent=label;
+  var m=$('#tMsg');
+  if(msgs&&msgs.length){m.hidden=false;m.className='note'+(kind?' '+kind:'');m.innerHTML=msgs.map(esc).join('<br>')}
+  else m.hidden=true;
+  $('#miniV').textContent=num==='—'?'—':num+'%';
+  $('#miniL').textContent='Your estimated total';
+  $('#pdfBtn2').disabled=!TL;
+  $('#tExChip').hidden=tTouched;
+  renderElig();
+}
+function updateTansik(){
+  syncGroups();
+  var uni=gv('uni'),R=RULES[uni];
+  var g=gpaPart(),p1=part1(),p2=part2();
+  TL=null;
+  var tt=$('#t1Total');
+  if(p1.s==='ok') tt.textContent='Total: '+p1.total+' / 1600 ('+(p1.conv?'after conversion: ':'')+p1.note+')';
+  else tt.textContent='Pick one test only. SAT and EST scores can’t be mixed.';
+  var bad=[g,p1,p2].filter(function(x){return x.s==='bad'});
+  var mx=GPA_W+R.mBonus+P2_W;
+  $('#tMax').textContent='Highest possible total for '+R.label+': '+mx+'%';
+  $('#tBk').hidden=true;
+  var label='Your total for '+R.label;
+  if(bad.length) return tShow('—',label,bad.map(function(x){return x.msg}),'bad');
+  var need=[g,p1].filter(function(x){return x.s==='empty'}).map(function(x){return x.need});
+  if(need.length) return tShow('—',label,['Enter '+need.join(' and ')+' to see your total.']);
+  if(p1.total<R.min1) return tShow('—',label,['Your first test total of '+p1.total+' is below the minimum for '+R.label+' ('+R.min1+' out of 1600).'],'bad');
+  var t1=p1.total,mult=t1>=R.bonusAt?R.mBonus:R.mBase;
+  var gp=g.pts,s1=t1/FULL*mult,s2=0,counted=false,msgs=[],kind='';
+  if(p2.s==='ok'){
+    if(p2.total>=R.min2){s2=p2.total/FULL*P2_W;counted=true}
+    else{msgs.push('Your second test total of '+p2.total+' is below '+R.min2+', so it isn’t counted.');kind='warn'}
+  }else if(p2.s==='half'){msgs.push('Enter both subject scores to count the second test.');kind='warn'}
+  if(t1<R.bonusAt){
+    var jump=Math.round(R.bonusAt/FULL*R.mBonus-(R.bonusAt-1)/FULL*R.mBase);
+    msgs.push('If your first test total reaches '+R.bonusAt+' or more, the multiplier rises from '+R.mBase+' to '+R.mBonus+', which adds about '+jump+'% to your total.');
+    if(!kind) kind='good';
+  }
+  var total=gp+s1+s2;
+  TL={uni:uni,label:R.title,total:total,gp:gp,gpa:g.gpa,s1:s1,t1:t1,mult:mult,s2:s2,counted:counted,p2total:p2.s==='ok'?p2.total:null,
+      t1name:({sat:'SAT 1',est:'EST 1',act:'ACT 1'})[gv('t1')],t2name:({est2:'EST 2',act2:'ACT 2',none:'—'})[gv('t2')],t1note:p1.note,max:mx,rlabel:R.label};
+  tShow(f2(total),label,msgs,kind);
+  $('#tBk').hidden=false;
+  setBar(1,gp,GPA_W,g.gpa.toFixed(2)+' ÷ 4.0 × 40');
+  setBar(2,s1,R.mBonus,t1+' ÷ 1600 × '+mult);
+  if(counted) setBar(3,s2,P2_W,p2.total+' ÷ 1600 × '+P2_W);
+  else setBar(3,0,P2_W,'Not counted');
+}
+function touchT(){if(!tTouched){tTouched=true;$('#tExChip').hidden=true}}
+$('#v-tansik').addEventListener('input',function(e){if(e.target.id==='stName2'||e.target.id==='eligQ')return;touchT();updateTansik()});
+$('#v-tansik').addEventListener('change',function(e){if(e.target.id==='stName2'||e.target.id==='eligQ')return;touchT();updateTansik()});
+function importGpa(){
+  var g=americanGpa();if(g==null) return false;
+  $('#tGpa').value=g.toFixed(2);
+  touchT();updateTansik();return true;
+}
+$('#importBtn').addEventListener('click',importGpa);
+$('#toTansik').addEventListener('click',function(){if(importGpa()) route('tansik')});
+
+/* student name */
+function bindName(id,other){
+  $(id).addEventListener('input',function(){G.name=this.value;$(other).value=this.value});
+}
+bindName('#stName','#stName2');bindName('#stName2','#stName');
+
+/* ============================================================
+   PDF report (drawn on canvas, then wrapped into a PDF in the page)
+   ============================================================ */
+var FONT="'Lexend','Segoe UI',Tahoma,'DejaVu Sans',sans-serif";
+function isAr(s){return /[؀-ۿ]/.test(s)}
+function withTimeout(p,ms){return Promise.race([p,new Promise(function(r){setTimeout(r,ms)})])}
+function fontsReady(){
+  if(!document.fonts||!document.fonts.load) return Promise.resolve();
+  var s='Abc Xyz 0123456789 A*';
+  return withTimeout(Promise.all([400,500,600,700].map(function(w){return document.fonts.load(w+' 28px "Lexend"',s).catch(function(){})})),3000);
+}
+function dateStr(){
+  var d=new Date();
+  try{return d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}catch(e){return d.toISOString().slice(0,10)}
+}
+function isoDate(){return new Date().toISOString().slice(0,10)}
+
+async function renderPages(m){
+  await fontsReady();
+  var W=1240,H=1754,M=76,CW=W-2*M,pages=[],c,x,y;
+  var INK='#0F1B2D',MUTE='#556274',LINE='#DCE3EC',BRAND='#2563EB',ONB='#FFFFFF',SOFT='#EEF3FC',HEAD='#E1E9F6';
+  function font(px,wt){return (wt||400)+' '+px+'px '+FONT}
+  function rr(px,py,w,h,r,fill){
+    x.beginPath();x.moveTo(px+r,py);x.arcTo(px+w,py,px+w,py+h,r);x.arcTo(px+w,py+h,px,py+h,r);x.arcTo(px,py+h,px,py,r);x.arcTo(px,py,px+w,py,r);x.closePath();
+    x.fillStyle=fill;x.fill();
+  }
+  function txt(s,px,py,o){
+    o=o||{};x.font=font(o.size||26,o.weight);x.fillStyle=o.color||INK;
+    x.direction=isAr(s)?'rtl':'ltr';
+    x.textAlign=o.align==='c'?'center':(o.align==='r'?'right':'left');
+    x.fillText(s,px,py);
+  }
+  function width(s,size,wt){x.font=font(size,wt);x.direction=isAr(s)?'rtl':'ltr';return x.measureText(s).width}
+  function fit(s,maxW,size,wt){
+    if(width(s,size,wt)<=maxW) return s;
+    while(s.length>1&&width(s+'…',size,wt)>maxW) s=s.slice(0,-1);
+    return s+'…';
+  }
+  function wrap(s,maxW,size,wt){
+    var words=String(s).split(' '),lines=[],cur='';
+    words.forEach(function(w){
+      var t=cur?cur+' '+w:w;
+      if(width(t,size,wt)>maxW&&cur){lines.push(cur);cur=w}else cur=t;
+    });
+    if(cur) lines.push(cur);
+    return lines;
+  }
+  function newPage(first){
+    c=document.createElement('canvas');c.width=W;c.height=H;x=c.getContext('2d');
+    x.fillStyle='#FFFFFF';x.fillRect(0,0,W,H);x.textBaseline='alphabetic';
+    pages.push(c);
+    if(first){
+      x.fillStyle=BRAND;x.fillRect(0,0,W,250);
+      txt(m.title,M,118,{size:58,weight:700,color:ONB});
+      txt(m.subtitle,M,188,{size:30,weight:500,color:'#DCE7FF'});
+      txt(dateStr(),W-M,118,{size:26,weight:500,color:'#DCE7FF',align:'r'});
+      rr(W-M-52,150,12,26,3,ONB);rr(W-M-32,138,12,38,3,ONB);rr(W-M-12,126,12,50,3,ONB);
+      y=250+54;
+    }else{
+      x.fillStyle=BRAND;x.fillRect(0,0,W,90);
+      txt(m.title,M,58,{size:30,weight:700,color:ONB});
+      y=90+56;
+    }
+  }
+  newPage(true);
+  if(m.name){
+    txt('Student',M,y+8,{size:24,weight:500,color:MUTE});
+    txt(fit(m.name,CW-170,34,600),M+130,y+8,{size:34,weight:600});
+    y+=64;
+  }
+  /* tiles */
+  var n=m.tiles.length,gap=24,tw=(CW-gap*(n-1))/n,th=190;
+  m.tiles.forEach(function(t,i){
+    var left=M+i*(tw+gap);
+    rr(left,y,tw,th,22,i===0?BRAND:SOFT);
+    txt(t.label,left+26,y+52,{size:24,weight:500,color:i===0?ONB:MUTE});
+    var size=84;
+    while(size>34&&width(t.value,size,700)>tw-52) size-=4;
+    txt(t.value,left+26,y+th-36,{size:size,weight:700,color:i===0?ONB:INK});
+  });
+  y+=th+56;
+  /* table */
+  var geom=[],cl=M;
+  m.cols.forEach(function(col){var w=col.w*CW;geom.push({left:cl,right:cl+w,w:w});cl+=w});
+  var RH=64;
+  function tableHead(){
+    rr(M,y,CW,60,12,HEAD);
+    m.cols.forEach(function(col,i){
+      var g=geom[i];
+      txt(col.h,col.al==='c'?(g.left+g.right)/2:g.left+18,y+40,{size:23,weight:600,color:'#33425A',align:col.al==='c'?'c':'l'});
+    });
+    y+=60;
+  }
+  tableHead();
+  m.rows.forEach(function(row){
+    if(y+RH>H-190){newPage(false);tableHead()}
+    var cells=row.cells||row,bold=!!row.bold;
+    if(bold){x.fillStyle=SOFT;x.fillRect(M,y,CW,RH)}
+    cells.forEach(function(s,i){
+      var g=geom[i],col=m.cols[i],size=26,wt=bold?700:(i===0?500:400);
+      s=fit(String(s),g.w-36,size,wt);
+      txt(s,col.al==='c'?(g.left+g.right)/2:g.left+18,y+RH/2+9,{size:size,weight:wt,align:col.al==='c'?'c':'l',color:INK});
+    });
+    x.fillStyle=LINE;x.fillRect(M,y+RH-1,CW,2);
+    y+=RH;
+  });
+  y+=44;
+  /* notes */
+  if(m.notes&&m.notes.length){
+    if(y+120>H-190){newPage(false)}
+    txt('Notes',M,y,{size:26,weight:700});y+=18;
+    m.notes.forEach(function(nt){
+      wrap(nt,CW-30,23,400).forEach(function(line,li){
+        if(y+44>H-190){newPage(false)}
+        y+=38;
+        txt(line,M+30,y,{size:23,weight:400,color:MUTE});
+        if(li===0){x.fillStyle=BRAND;x.beginPath();x.arc(M+8,y-9,6,0,Math.PI*2);x.fill()}
+      });
+      y+=8;
+    });
+  }
+  /* footers */
+  pages.forEach(function(pg,i){
+    x=pg.getContext('2d');
+    x.fillStyle=LINE;x.fillRect(M,H-100,CW,2);
+    txt('An estimate for guidance only. The official record is your school transcript and the coordination office.',M,H-56,{size:21,color:MUTE});
+    txt((i+1)+' / '+pages.length,W-M,H-56,{size:21,color:MUTE,align:'r'});
+  });
+  return pages;
+}
+function canvasJpeg(c){
+  return new Promise(function(res,rej){c.toBlob(function(b){if(!b)return rej(new Error('jpeg'));b.arrayBuffer().then(function(ab){res({bytes:new Uint8Array(ab),w:c.width,h:c.height})},rej)},'image/jpeg',0.93)});
+}
+function makePDF(jpgs){
+  var enc=new TextEncoder(),parts=[],pos=0,offs=[0];
+  function add(d){var b=typeof d==='string'?enc.encode(d):d;parts.push(b);pos+=b.length}
+  function begin(n){offs[n]=pos;add(n+' 0 obj\n')}
+  add('%PDF-1.4\n');add(new Uint8Array([37,226,227,207,211,10]));
+  var n=jpgs.length,PW=595.28,PH=841.89,kids=[];
+  for(var i=0;i<n;i++) kids.push((3+3*i)+' 0 R');
+  begin(1);add('<< /Type /Catalog /Pages 2 0 R >>\nendobj\n');
+  begin(2);add('<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+n+' >>\nendobj\n');
+  jpgs.forEach(function(j,i){
+    var p=3+3*i,ct=p+1,im=p+2,content='q '+PW+' 0 0 '+PH+' 0 0 cm /Im0 Do Q';
+    begin(p);add('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 '+PW+' '+PH+'] /Resources << /XObject << /Im0 '+im+' 0 R >> >> /Contents '+ct+' 0 R >>\nendobj\n');
+    begin(ct);add('<< /Length '+content.length+' >>\nstream\n'+content+'\nendstream\nendobj\n');
+    begin(im);add('<< /Type /XObject /Subtype /Image /Width '+j.w+' /Height '+j.h+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+j.bytes.length+' >>\nstream\n');add(j.bytes);add('\nendstream\nendobj\n');
+  });
+  var total=3*n+3,xref=pos,xr='xref\n0 '+total+'\n0000000000 65535 f \n';
+  for(var k2=1;k2<total;k2++) xr+=('0000000000'+offs[k2]).slice(-10)+' 00000 n \n';
+  add(xr+'trailer\n<< /Size '+total+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF\n');
+  var out=new Uint8Array(pos),o=0;
+  parts.forEach(function(b){out.set(b,o);o+=b.length});
+  return out;
+}
+
+/* report models */
+function calcModel(){
+  var calc=cur,st=G[calc],S=summarize(calc);
+  var names={igcse:'IGCSE',ib:'IB Diploma (DP)',american:'American High School'};
+  var scaleLabel=calc==='igcse'?'Unweighted':(calc==='american'?(st.style==='ca'?'Canadian scale':'US scale'):'IB 1 – 7');
+  var m={title:'GPA Report',subtitle:names[calc]+' · '+scaleLabel,name:G.name.trim(),file:'GPA-'+names[calc].split(' ')[0]+'-'+isoDate()+'.pdf',tiles:[],cols:[],rows:[],notes:[]};
+  m.tiles.push({label:'GPA (out of 4.0)',value:f2(S.gpa)});
+  if(calc!=='igcse') m.tiles.push({label:'Weighted (out of 5.0)',value:f2(S.wgpa)});
+  if(calc==='ib'&&S.ibPoints!=null) m.tiles.push({label:'Diploma points',value:S.ibPoints+' / 45'});
+  var rows=[];
+  st.rows.forEach(function(r,i){
+    var e=S.ev[i];if(!e) return;
+    var nm=r.name.trim()||('Subject '+(i+1));
+    if(calc==='igcse') rows.push([nm,e.grade,f2(e.pts)]);
+    else if(calc==='ib') rows.push([nm,e.level,e.grade,f2(e.pts),f2(e.wpts)]);
+    else rows.push([nm,e.level,e.grade,trim(e.credit),f2(e.pts),f2(e.wpts)]);
+  });
+  m.rows=rows;
+  if(calc==='igcse') m.cols=[{h:'Subject',w:.52,al:'s'},{h:'Grade',w:.24,al:'c'},{h:'Points (4.0)',w:.24,al:'c'}];
+  else if(calc==='ib') m.cols=[{h:'Subject',w:.4,al:'s'},{h:'Level',w:.14,al:'c'},{h:'Grade',w:.14,al:'c'},{h:'Points (4.0)',w:.16,al:'c'},{h:'Weighted (5.0)',w:.16,al:'c'}];
+  else m.cols=[{h:'Subject',w:.3,al:'s'},{h:'Level',w:.16,al:'c'},{h:'Grade',w:.17,al:'c'},{h:'Credits',w:.11,al:'c'},{h:'Points (4.0)',w:.13,al:'c'},{h:'Weighted (5.0)',w:.13,al:'c'}];
+  if(calc==='igcse'){
+    m.notes.push('The GPA is unweighted: there is no Honors bonus for IGCSE.');
+    m.notes.push('Letter grades and 9 to 1 grades are converted to a 4.0 scale. There is no single official IGCSE table.');
+  }else if(calc==='ib'){
+    m.notes.push('Weighted GPA: HL adds 1.0 and SL adds 0.5 to courses worth 1.0 point or more.');
+    m.notes.push('Diploma points = the total of your 6 subjects + '+st.bonus+' from TOK and the Extended Essay.');
+    m.notes.push('The grades are converted to a 4.0 scale. There is no single official table, and most US universities recalculate GPA in their own way.');
+  }else{
+    m.notes.push('Weighted GPA: Honors adds 0.5 and AP or IB adds 1.0 to courses worth 1.0 point or more.');
+    m.notes.push(st.style==='ca'?'The scale used is Canadian (A+ starts at 90%).':'The scale used is American (A+ starts at 97%).');
+  }
+  return m;
+}
+function tansikModel(){
+  var t=TL;
+  var m={title:'Tansik Report',subtitle:'American Diploma · '+t.t1name,name:G.name.trim(),file:'Tansik-'+isoDate()+'.pdf',
+    tiles:[{label:'Estimated total',value:f2(t.total)+'%'},{label:'Applying to',value:t.label}],
+    cols:[{h:'Part',w:.36,al:'s'},{h:'Calculation',w:.38,al:'c'},{h:'Result',w:.26,al:'c'}],rows:[],notes:[]};
+  m.rows=[
+    ['GPA (40%)',t.gpa.toFixed(2)+' ÷ 4.0 × 40',f2(t.gp)],
+    ['First test ('+t.t1name+')',t.t1+' ÷ 1600 × '+t.mult,f2(t.s1)],
+    ['Second test ('+t.t2name+')',t.counted?t.p2total+' ÷ 1600 × 15':'Not counted',f2(t.s2)],
+    {cells:['Total','',f2(t.total)+'%'],bold:true}
+  ];
+  m.notes.push('First test total: '+t.t1note+'.');
+  m.notes.push('Highest possible total for '+t.rlabel+': '+t.max+'%.');
+  m.notes.push('This calculator is for the American Diploma. The latest rules are set by the coordination office and the Supreme Council of Universities.');
+  return m;
+}
+
+/* save / preview */
+var STANDALONE=true,DL=null,DLready=null;
+function directDownload(blob,name){
+  var u=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=u;a.download=name;a.rel='noopener';document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(u);a.remove()},4000);
+}
+DLready=(function(){
+  try{if(window.claude&&window.claude.use) return window.claude.use('downloads').then(function(d){DL=d;return d}).catch(function(){return null})}catch(e){}
+  return Promise.resolve(null);
+})();
+DLready.then(function(d){
+  if(!d&&!STANDALONE) ['#pdfBtn','#pdfBtn2'].forEach(function(s){var sp=$(s+' span');if(sp) sp.textContent='Preview report'});
+});
+var toastT=null;
+function toast(msg){
+  var t=$('#toast');t.textContent=msg;t.hidden=false;
+  clearTimeout(toastT);toastT=setTimeout(function(){t.hidden=true},3600);
+}
+var lastFocus=null;
+function showPreview(pages){
+  var box=$('#ovPages');box.innerHTML='';
+  pages.forEach(function(p,i){
+    var im=new Image();im.alt='Page '+(i+1)+' of the report';im.src=p.toDataURL('image/jpeg',0.9);box.appendChild(im);
+  });
+  lastFocus=document.activeElement;
+  $('#ov').hidden=false;$('#ovClose').focus();
+}
+function closePreview(){$('#ov').hidden=true;if(lastFocus&&lastFocus.focus) lastFocus.focus()}
+$('#ovClose').addEventListener('click',closePreview);
+$('#ov').addEventListener('click',function(e){if(e.target===this) closePreview()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('#ov').hidden) closePreview()});
+
+async function savePDF(btn,model){
+  var label=$('span',btn),pages=null;
+  btn.disabled=true;label.textContent='Preparing file…';
+  try{
+    pages=await renderPages(model);
+    var d=await DLready;
+    if(!d&&!STANDALONE){showPreview(pages);return}
+    var jp=[];for(var i=0;i<pages.length;i++) jp.push(await canvasJpeg(pages[i]));
+    var bytes=makePDF(jp);
+    var blob=new Blob([bytes],{type:'application/pdf'});
+    if(d){await d.save({filename:model.file,data:blob});toast('Report saved')}
+    else{directDownload(blob,model.file);toast('Your PDF is downloading')}
+  }catch(e){
+    if(e&&e.code==='declined'){/* the viewer said no */}
+    else{toast('Couldn’t save the file here. This preview can be saved as an image.');if(pages) showPreview(pages)}
+  }finally{
+    label.textContent=(DL||STANDALONE)?'Save PDF report':'Preview report';
+    btn.disabled=false;
+    if(cur==='tansik') $('#pdfBtn2').disabled=!TL; else updateCalc();
+  }
+}
+$('#pdfBtn').addEventListener('click',function(){
+  var S=summarize(cur);if(!S.n) return;
+  savePDF(this,calcModel());
+});
+$('#pdfBtn2').addEventListener('click',function(){
+  if(!TL) return;
+  savePDF(this,tansikModel());
+});
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+var VIEWS=['home','igcse','ib','american','tansik'];
+function route(id,push){
+  if(VIEWS.indexOf(id)<0) id='home';
+  cur=id;
+  var isCalc=id==='igcse'||id==='ib'||id==='american';
+  $('#v-home').hidden=id!=='home';
+  $('#v-calc').hidden=!isCalc;
+  $('#v-tansik').hidden=id!=='tansik';
+  $('#pills').hidden=id==='home';
+  $$('.pill').forEach(function(p){if(p.getAttribute('data-go')===id) p.setAttribute('aria-current','page'); else p.removeAttribute('aria-current')});
+  $('#mini').hidden=id==='home';
+  $('#app').classList.toggle('with-mini',id!=='home');
+  if(isCalc){
+    $('#cTitle').textContent=COPY[id].title;
+    $('#cLede').textContent=COPY[id].lede;
+    $('#stName').value=G.name;
+    renderForm();
+  }
+  if(id==='tansik'){$('#stName2').value=G.name;refreshImport();updateTansik()}
+  if(push!==false){try{history.pushState({v:id},'','#'+id)}catch(e){}}
+  window.scrollTo(0,0);
+  var h=isCalc?$('#cTitle'):(id==='tansik'?$('#tTitle'):null);
+  if(h&&push!==false) h.focus({preventScroll:true});
+}
+document.addEventListener('click',function(e){
+  var a=e.target.closest('[data-go]');
+  if(!a) return;
+  e.preventDefault();
+  route(a.getAttribute('data-go'));
+});
+window.addEventListener('popstate',function(){
+  var h=(location.hash||'').replace('#','');route(h||'home',false);
+});
+$('#miniGo').addEventListener('click',function(){
+  var r=cur==='tansik'?$('#tRes'):$('#cRes');
+  if(r&&r.scrollIntoView) r.scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* subject name suggestions */
+Object.keys(SUBJECTS).forEach(function(k){
+  var dl=document.createElement('datalist');dl.id='dl-'+k;
+  dl.innerHTML=SUBJECTS[k].map(function(s){return '<option value="'+esc(s)+'">'}).join('');
+  $('#app').appendChild(dl);
+});
+
+var h0=(location.hash||'').replace('#','');
+route(VIEWS.indexOf(h0)>=0?h0:'home',false);
+try{history.replaceState({v:cur},'',cur==='home'?location.pathname+location.search:'#'+cur)}catch(e){}
+})();
+</script>
+</body>
+</html>
